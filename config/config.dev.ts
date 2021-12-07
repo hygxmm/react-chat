@@ -1,4 +1,5 @@
 import { defineConfig } from 'umi';
+import routes from './routes';
 
 export default defineConfig({
   nodeModulesTransform: {
@@ -8,10 +9,6 @@ export default defineConfig({
     immer: true,
     hmr: true,
   },
-  routes: [
-    { path: '/', component: '@/pages/index' },
-    { path: '/login', component: '@/pages/Login/index' },
-  ],
+  routes: routes,
   fastRefresh: {},
-  mfsu: {},
 });

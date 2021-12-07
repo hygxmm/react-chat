@@ -1,3 +1,41 @@
-.title {
-  background: rgb(121, 242, 157);
+.page {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+}
+.side {
+  width: 60px;
+  height: 100%;
+  background: #e7e0e1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: #747071;
+  .sideTop {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .sideBot {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.content {
+  flex: 1;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.fontStyle {
+  font-size: 24px;
+  color: #747071;
 }
