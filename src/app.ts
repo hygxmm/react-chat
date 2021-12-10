@@ -1,5 +1,6 @@
 import type { RequestConfig } from 'umi';
 
+// 统一配置请求方法
 export const request: RequestConfig = {
   prefix: 'http://127.0.0.1:7001/',
   timeout: 5000, // 请求超时

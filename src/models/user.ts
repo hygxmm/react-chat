@@ -44,7 +44,6 @@ const UserStore = {
       };
     },
     openUserInfoPopup(state) {
-      console.log('????');
       return {
         ...state,
         popupVisible: true,

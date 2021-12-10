@@ -1,8 +1,8 @@
 import { defineConfig } from 'umi';
 import routes from './routes';
 
-const { REACT_APP_ENV, REACT_APP_STAGE, APP_PUBLIC_PATH } = process.env;
-console.log('????', REACT_APP_ENV, REACT_APP_STAGE, APP_PUBLIC_PATH);
+const { NODE_ENV, REACT_APP_STAGE, APP_PUBLIC_PATH } = process.env;
+console.log('process.env.NODE_ENV', NODE_ENV);
 
 export default defineConfig({
   nodeModulesTransform: {

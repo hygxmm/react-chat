@@ -24,7 +24,7 @@ export default function IndexPage(props: any) {
       <div className={styles.side}>
         <div className={styles.sideTop}>
           <div onClick={openPopup}>
-            <Avatar shape="square" size="large" src={avatar}></Avatar>
+            <Avatar shape="circle" size="large" src={avatar}></Avatar>
           </div>
           <Space className={styles.mt20} direction="vertical" size={20}>
             <Button

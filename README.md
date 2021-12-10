@@ -118,12 +118,16 @@ export default () => {
 ```
 #### Dva 关
 ```ts
-import { connect,getDvaApp,useDispatch,useSelector,useStore } from 'umi';
+import { connect, getDvaApp, useDispatch, useSelector, useStore } from 'umi';
 ```
 #### 请求相关
 ```ts
 import { request, useRequest, RequestConfig } from 'umi';
+import type { RequestConfig } from 'umi';
 ```
 #### 
-#### 
+#### umi-request
+```ts
+import type { ResponseError } from 'umi-request';
+```
 #### 
