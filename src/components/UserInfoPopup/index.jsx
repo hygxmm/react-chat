@@ -18,7 +18,7 @@ const UserInfoPopup = () => {
 
   // 头像
   const [avatar, setAvatar] = useState(userInfo.avatar);
-  const uploadAvatar = (e: any) => {
+  const uploadAvatar = (e) => {
     const {
       file: { status, response },
     } = e;
@@ -26,6 +26,12 @@ const UserInfoPopup = () => {
       const { code, data, msg } = response;
       if (code == 0) {
         setAvatar(data[0].path);
+        dispatch({
+          type: 'user/changeAvatar',
+          payload: {
+            avatar: data[0].path,
+          },
+        });
       } else {
         message.error(msg);
       }

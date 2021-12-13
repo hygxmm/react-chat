@@ -8,7 +8,7 @@ import {
 import styles from './index.less';
 import UserInfoPopup from '@/components/UserInfoPopup';
 
-export default function IndexPage(props: any) {
+export default function IndexPage(props) {
   const userState = useSelector((state) => state.user);
   const { avatar } = userState.userInfo;
   const dispatch = useDispatch();

@@ -6,11 +6,11 @@ import { useState } from 'react';
 
 const { TabPane } = Tabs;
 
-const LoginPage = (props: any) => {
+const LoginPage = (props) => {
   // console.log('login page ==>>> props', props);
   const [activeTab, setActiveTab] = useState('login');
   const dispatch = useDispatch();
-  const handleSubmit = (values: { mobile: string; password: string }) => {
+  const handleSubmit = (values) => {
     if (activeTab == 'login') {
       dispatch({
         type: 'login/login',
@@ -23,7 +23,7 @@ const LoginPage = (props: any) => {
       });
     }
   };
-  const tabChange = (activeKey: string) => {
+  const tabChange = (activeKey) => {
     setActiveTab(activeKey);
   };
   return (

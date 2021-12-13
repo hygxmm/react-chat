@@ -1,6 +1,4 @@
-import type { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
-import type { Model } from 'dva';
-
+import { changeAvatar } from '@/services';
 const UserStore = {
   namespace: 'user',
   state: {
@@ -10,7 +8,7 @@ const UserStore = {
   },
   reducers: {
     initApp(state) {
-      const userInfoStr = localStorage.getItem('__user_info__');
+      const userInfoStr = localStorage.getItem('__chat_user_info__');
       let userInfo = null;
       let token = '';
       if (userInfoStr) {
@@ -21,6 +19,7 @@ const UserStore = {
           console.log(error);
         }
       }
+      console.log('initApp', userInfo);
       return {
         ...state,
         userInfo,
@@ -28,7 +27,7 @@ const UserStore = {
       };
     },
     updateUserInfo(state, { payload }) {
-      localStorage.setItem('__user_info__', JSON.stringify(payload));
+      localStorage.setItem('__chat_user_info__', JSON.stringify(payload));
       return {
         ...state,
         userInfo: payload,
@@ -36,7 +35,7 @@ const UserStore = {
       };
     },
     removeUserInfo(state) {
-      localStorage.removeItem('__user_info__');
+      localStorage.removeItem('__chat_user_info__');
       return {
         ...state,
         userInfo: null,
@@ -58,6 +57,17 @@ const UserStore = {
   },
   effects: {
     *login() {},
+    /**
+     * 修改用户头像
+     */
+    *changeAvatar({ payload }, { call }) {
+      try {
+        const { code, data, msg } = yield call(changeAvatar, payload);
+        console.log(`${code}`, data);
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   subscriptions: {
     setup({ dispatch, history }) {

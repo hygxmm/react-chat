@@ -1,5 +1,3 @@
-import type { Effect, ImmerReducer, Reducer, Subscription } from 'umi';
-import type { Model } from 'dva';
 import { history } from 'umi';
 import { login } from './service';
 
@@ -13,6 +11,7 @@ const LoginStore = {
   effects: {
     *login({ payload }, { put, call }) {
       const { data } = yield call(login, payload);
+      console.log('login', data);
       yield put({ type: 'user/updateUserInfo', payload: data });
       history.replace('/');
     },
