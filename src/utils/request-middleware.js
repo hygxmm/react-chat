@@ -57,7 +57,11 @@ export const requestInterceptor = (url, options) => {
 
 export const responseInterceptor = async (response) => {
   const data = await response.clone().json();
+  console.log('responseInterceptor data', data);
+  return response;
+};
 
-  console.log('responseInterceptor', data);
-  return data;
+export const adaptor = (resData) => {
+  console.log('adaptor', resData);
+  return resData;
 };

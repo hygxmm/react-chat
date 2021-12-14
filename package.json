@@ -22,9 +22,11 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-layout": "^6.5.0",
+    "lodash": "^4.17.21",
     "react": "17.x",
     "react-dom": "17.x",
-    "umi": "^3.5.20"
+    "umi": "^3.5.20",
+    "validate.js": "^0.13.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

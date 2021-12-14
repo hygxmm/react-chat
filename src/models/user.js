@@ -1,4 +1,6 @@
-import { changeAvatar } from '@/services';
+import { message } from 'antd';
+import { changeAvatar, changeUsername, changePassword } from '@/services';
+import _ from 'lodash';
 const UserStore = {
   namespace: 'user',
   state: {
@@ -56,7 +58,6 @@ const UserStore = {
     },
   },
   effects: {
-    *login() {},
     /**
      * 修改用户头像
      */
@@ -66,6 +67,45 @@ const UserStore = {
         console.log(`${code}`, data);
       } catch (error) {
         console.log(error);
+      }
+    },
+    *changeUsername({ payload }, { call, put, select }) {
+      try {
+        const { data: result } = yield call(changeUsername, payload);
+        const { code, data, msg } = result;
+        if (code === 0) {
+          message.success('修改成功');
+          const { userInfo: info } = yield select((state) => state.user);
+          const newInfo = _.assign(_.clone(info), payload);
+          yield put({ type: 'updateUserInfo', payload: newInfo });
+        } else {
+          message.error(msg);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    *changePassword({ payload }, { call, put, select }) {
+      const { password, password2 } = payload;
+      if (!_.trim(password)) return message.error('请输入旧密码');
+      if (!_.trim(password2)) return message.error('请输入新密码');
+      if (_.trim(password) === _.trim(password2))
+        return message.error('新密码与旧密码一致');
+      try {
+        const { data: result } = yield call(changePassword, {
+          oldPassword: password,
+          newPassword: password2,
+        });
+        const { code, data, msg } = result;
+        if (code === 0) {
+          message.success('修改成功');
+          // yield put();
+        } else {
+          message.error(msg);
+        }
+        console.log(code, data, msg);
+      } catch (error) {
+        console.error(error);
       }
     },
   },

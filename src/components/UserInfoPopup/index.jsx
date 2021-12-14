@@ -39,6 +39,24 @@ const UserInfoPopup = () => {
   };
   // 昵称
   const [username, setUsername] = useState(userInfo.username);
+  const changeUsername = () => {
+    dispatch({
+      type: 'user/changeUsername',
+      payload: { username },
+    });
+  };
+  // 密码
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const changePassword = () => {
+    dispatch({
+      type: 'user/changePassword',
+      payload: {
+        password,
+        password2,
+      },
+    });
+  };
 
   return (
     <Modal
@@ -63,15 +81,32 @@ const UserInfoPopup = () => {
         </Form.Item>
         <Form.Item label="修改昵称">
           <Space>
-            <Input value={username} />
-            <Button type={'primary'}>修改昵称</Button>
+            <Input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Button type={'primary'} onClick={changeUsername}>
+              修改昵称
+            </Button>
           </Space>
         </Form.Item>
         <Form.Item label="修改密码">
           <Space>
-            <Input value={''} placeholder="旧密码" />
-            <Input value={''} placeholder="新密码" />
-            <Button type={'primary'}>修改密码</Button>
+            <Input
+              type={'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="旧密码"
+            />
+            <Input
+              type={'password'}
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+              placeholder="新密码"
+            />
+            <Button type={'primary'} onClick={changePassword}>
+              修改密码
+            </Button>
           </Space>
         </Form.Item>
       </Form>
