@@ -37,10 +37,12 @@ export default function IndexPage(props) {
             <Button
               type={'text'}
               icon={<UsergroupDeleteOutlined className={styles.fontStyle} />}
+              onClick={() => history.push('/contact')}
             ></Button>
             <Button
               type={'text'}
               icon={<DropboxOutlined className={styles.fontStyle} />}
+              onClick={() => history.push('/games')}
             ></Button>
           </Space>
         </div>
@@ -48,7 +50,6 @@ export default function IndexPage(props) {
           <Button
             type={'text'}
             icon={<MenuOutlined className={styles.fontStyle} />}
-            onClick={() => history.push('/games')}
           ></Button>
         </div>
       </div>

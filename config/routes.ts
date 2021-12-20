@@ -1,4 +1,6 @@
 export default [
+  { path: '/tank', component: '@/pages/games/Tank/index' },
+  { path: '/login', component: '@/pages/Login/index' },
   {
     path: '/',
     component: '@/pages/index',
@@ -9,5 +11,4 @@ export default [
       { redirect: '/chat' },
     ],
   },
-  { path: '/login', component: '@/pages/Login/index' },
 ];
