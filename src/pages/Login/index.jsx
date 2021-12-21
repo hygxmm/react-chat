@@ -72,11 +72,18 @@ const LoginPage = (props) => {
               autoComplete="off"
             >
               <Form.Item
-                label="账号"
+                label="手机号"
                 name="mobile"
                 rules={[{ required: true, message: '请填写账号' }]}
               >
                 <Input placeholder="手机号" />
+              </Form.Item>
+              <Form.Item
+                label="昵称"
+                name="username"
+                rules={[{ required: true, message: '请填写昵称' }]}
+              >
+                <Input placeholder="昵称(2~8)个字" />
               </Form.Item>
               <Form.Item
                 label="密码"

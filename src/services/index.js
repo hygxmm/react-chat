@@ -26,3 +26,13 @@ export function changeUsername(data) {
 export function changePassword(data) {
   return request('api/user/changePassword', { data: data, method: 'POST' });
 }
+
+/**
+ * 获取联系人最新消息
+ *
+ *
+ *
+ */
+export function getLinkmansLastMessage(data) {
+  // return request('api/user/changePassword', { data: data, method: 'POST' });
+}

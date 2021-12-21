@@ -1,6 +1,12 @@
 import { message } from 'antd';
-import { changeAvatar, changeUsername, changePassword } from '@/services';
+import {
+  changeAvatar,
+  changeUsername,
+  changePassword,
+  getLinkmansLastMessage,
+} from '@/services';
 import _ from 'lodash';
+import { createLinkmanId } from '@/utils/utils';
 const UserStore = {
   namespace: 'user',
   state: {
@@ -56,6 +62,21 @@ const UserStore = {
         popupVisible: false,
       };
     },
+    setLinkman(state, { payload }) {
+      const linkmanStr = localStorage.getItem('__chat_linkman__');
+      const linkmans = [];
+      if (linkmanStr) {
+        try {
+          linkmans.push(...JSON.parse(linkmanStr));
+        } catch (error) {}
+      }
+      console.log();
+
+      // localStorage.setItem('__chat_user_info__', JSON.stringify(payload));
+      return {
+        ...state,
+      };
+    },
   },
   effects: {
     /**
@@ -107,6 +128,39 @@ const UserStore = {
       } catch (error) {
         console.error(error);
       }
+    },
+    *updateLinkmans({ payload }, { call, put, select }) {
+      const { groups, friends } = payload;
+      const linkmans = [];
+      if (Array.isArray(groups)) {
+        groups.forEach((group) => {
+          Object.assign(group, {
+            type: 'group',
+            unread: 0,
+            messages: [],
+          });
+        });
+        linkmans.push(...groups);
+      }
+      if (Array.isArray(friends)) {
+        friends.forEach((friend) => {
+          Object.assign(friend, {
+            type: 'friend',
+            _id: createLinkmanId(friend.from, friend.to._id),
+            messages: [],
+            unread: 0,
+            avatar: friend.to.avatar,
+            name: friend.to.name,
+            to: friend.to._id,
+          });
+        });
+        linkmans.push(...friends);
+      }
+      const linkmanIds = [...linkmans.map((l) => l._id)];
+      const { data: result } = yield call(getLinkmansLastMessage, {
+        linkmans: linkmanIds,
+      });
+      console.log('getLinkmansLastMessage', result);
     },
   },
   subscriptions: {
